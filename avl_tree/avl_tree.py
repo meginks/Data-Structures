@@ -40,7 +40,13 @@ class AVLTree:
   in the tree
   """
   def update_height(self):
-    pass
+    height = self.height 
+    height +=1
+    if not self: 
+      return height 
+    else: 
+      self.update_height()
+
 
   """
   Updates the balance factor on the AVLTree class
