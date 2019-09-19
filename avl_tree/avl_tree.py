@@ -52,12 +52,9 @@ class AVLTree:
   Updates the balance factor on the AVLTree class
   """
   def update_balance(self):
-   balance = self.balance
-   balance += 1  
-   if not self.node: 
-      return balance
-    else: 
-      self.update_balance()
+    # self.balance = self.node.left.height - self.node.right.height
+    # return self.balance
+    pass
 
     
 
