@@ -2,6 +2,7 @@ import sys
 sys.path.append('../queue_and_stack')
 from queue import Queue
 from stack import Stack
+from collections import deque
 
 class BinarySearchTree:
   def __init__(self, value):
@@ -53,39 +54,40 @@ class BinarySearchTree:
     print(node.value) 
     self.in_order_print(node.right)
 
+
   def bft_print(self, node):
     """ Print the value of every node, starting with the given node, use an iterative breadth first traversal """
-    holding_cell = [] 
     traversal_queue = Queue() 
-    while len(traversal_queue) > 0: 
-            node = traversal_queue.dequeue() 
-            holding_cell.append(node.value)
-            if node.left_child: 
-                traversal_queue.append(node.left_child) 
-            if node.right_child: 
-                traversal_queue.append(node.right_child) 
-            holding_cell  
+    # if node is None:
+    #   return
+    traversal_queue.enqueue(node) 
+    current_node = None
+    while traversal_queue.size > 0: 
+      current_node = traversal_queue.dequeue() 
+      if current_node.left: 
+        traversal_queue.enqueue(current_node.left)
+      if current_node.right: 
+        traversal_queue.enqueue(current_node.right) 
+      print(current_node.value)
+
           
     
       
     
   def dft_print(self, node):
     """Print the value of every node, starting with the given node, in an iterative depth first traversal """
-    holding_cell = []
-    if node is None:
-      return 
-    # PREORDER 
-    holding_cell.append(node.value)
-    while node.left: 
-      if node.left: 
-        node = node.left 
-        holding_cell.append(node.value)
-    while node.right: 
-      if node.right:
-        node = node.right 
-        holding_cell.append(node.value) 
-    for node in holding_cell: 
-      print(node)
+    holding_cell = Stack()
+    holding_cell.push(node) 
+    current_node = node 
+    while holding_cell.len() > 0: 
+      current_node = holding_cell.pop()
+      print(current_node.value)
+      if current_node.left: 
+        holding_cell.push(current_node.left)
+      if current_node.right:
+        holding_cell.push(current_node.right)
+         
+  
     
     
 
